@@ -20,6 +20,12 @@
     align-items: center;
     justify-content: center;
 
+    @media only screen and (max-width: $bp-smallest) {
+        order: 1;
+        flex: 0 0 100%;
+        background-color: var(--color-grey-light-2);
+    }
+
     &__input {
         font-family: inherit;
         font-size: inherit;
@@ -138,11 +144,24 @@
     list-style: none;
     margin-top: 3.5rem;
 
+    @media only screen and (max-width: $bp-medium) {
+        display: flex;
+        margin-top: 0;
+
+        &>* {
+            flex: 1;
+        }
+    }
+
     &__item {
         position: relative;
 
         &:not(:last-child) {
             margin-bottom: .5rem;
+
+            @media only screen and (max-width: $bp-medium) {
+                margin-bottom: 0;
+            }
         }
     }
 
@@ -174,6 +193,15 @@
         z-index: 100;
         display: flex;
         align-items: center;
+
+        @media only screen and (max-width: $bp-medium) {
+            justify-content: center;
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            flex-direction: column;
+            padding: 1rem;
+        }
     }
 
 
@@ -182,6 +210,11 @@
         height: 1.75rem;
         margin-right: 2rem;
         fill: currentColor;
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            margin-bottom: 0.5rem;
+        }
     }
 }
 
@@ -194,6 +227,10 @@
     color: var(--color-grey-light-4);
     text-align: center;
     padding: 2.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        display: none;
+    }
 }
 
 
@@ -218,7 +255,7 @@
 .overview {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--color-grey-light-2);
+    border-bottom: var(--line);
 
     &__heading {
         font-size: 2.25rem;
@@ -226,6 +263,13 @@
         text-transform: uppercase;
         letter-spacing: 1px;
         padding: 1.5rem 3rem;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+            padding: 1rem 2rem;
+            -webkit-box-decoration-break: clone;
+            box-decoration-break: clone;
+        }
     }
 
     &__stars {
@@ -261,11 +305,19 @@
         align-items: center;
         justify-content: center;
         flex-direction: column;
+
+        @media only screen and (max-width: $bp-small) {
+            padding: 0 1.5rem;
+        }
     }
 
     &__rating-average {
         font-size: 2.25rem;
         font-weight: 300;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.8rem;
+        }
     }
 
     &__rating-count {
@@ -287,11 +339,164 @@
     display: inline-block;
     background-color: transparent;
 
+    & span {
+        margin-left: 3px;
+        transition: all .2s;
+    }
+
     &:hover {
         color: var(--color-grey-dark-3);
+        cursor: pointer;
+
+        span {
+            margin-left: 8px;
+        }
     }
 
     &:focus {
         outline: none;
+    }
+}
+
+
+
+
+
+////////////////////////////////////
+// PARAGRAPH
+.paragraph:not(:last-of-type) {
+    margin-bottom: 2rem;
+}
+
+
+
+
+
+
+////////////////////////////////////
+// LIST
+.list {
+    list-style: none;
+    margin: 3rem 0;
+    padding: 3rem 0;
+    border-top: var(--line);
+    border-bottom: var(--line);
+
+    margin-bottom: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    &__item {
+        flex: 0 0 50%;
+        margin-bottom: .7rem;
+    }
+
+    &__item::before {
+        content: "";
+        display: inline-block;
+        height: 1rem;
+        width: 1rem;
+        margin-right: .7rem;
+
+        // Older browsers
+        //background-image: url(../img/chevron-thin-right.svg);
+        //background-size: cover;
+
+        // New browsers - masks
+        background-color: var(--color-primary);
+        -webkit-mask-image: url(../img/chevron-thin-right.svg);
+        mask-image: url(../img/chevron-thin-right.svg);
+        -webkit-mask-size: cover;
+        mask-size: cover;
+    }
+}
+
+
+
+
+
+
+////////////////////////////////////
+// RECOMMEND
+
+.recommend {
+    font-size: 1.3rem;
+    color: var(--color-grey-dark-1);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &__count {}
+
+    &__friends {
+        display: flex;
+
+    }
+
+    &__photo {
+        box-sizing: content-box;
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        border: 3px solid #fff;
+
+        &:not(:last-child) {
+            margin-right: -2rem;
+        }
+    }
+}
+
+
+
+
+////////////////////////////////////
+// REVIEWS
+.review {
+    background-color: #fff;
+    box-shadow: var(--shadow-light);
+    padding: 3rem;
+    margin-bottom: 3.5rem;
+
+    @media only screen and (max-width: $bp-medium) {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+
+    &__text {}
+
+    &__user {
+        display: flex;
+        align-items: center;
+        margin-top: 2rem;
+    }
+
+    &__photo {
+        height: 4.5rem;
+        width: 4.5rem;
+        border-radius: 50%;
+    }
+
+    &__user-box {
+        margin-left: 1.5rem;
+        margin-right: auto;
+    }
+
+    &__user-name {
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    &__user-date {
+        font-size: 1.1rem;
+        margin-top: .2rem;
+        color: var(--color-grey-dark-1);
+    }
+
+    &__rating {
+        font-size: 2.25rem;
+        color: var(--color-primary);
     }
 }

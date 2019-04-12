@@ -12,8 +12,17 @@
     --color-grey-dark-2: #777;
     --color-grey-dark-3: #333;
 
-    --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3)
+    --shadow-dark: 0 2rem 6rem rgba(0, 0, 0, .3);
+    --shadow-light: 0 2rem 5rem rgba(0, 0, 0, .06);
+
+    --line: 1px solid var(--color-grey-light-2);
 }
+
+$bp-largest: 75em; //1200px
+$bp-large: 68.75em; //1100px
+$bp-medium: 56.25em; //900px
+$bp-small: 37.5em; //600px
+$bp-smallest: 31.5em; //500px
 
 * {
     margin: 0;
@@ -29,6 +38,10 @@
 html {
     box-sizing: border-box;
     font-size: 62.5%; //1rem = 10px/16px = 62.5%
+
+    @media only screen and (max-width: $bp-large) {
+        font-size: 50%;
+    }
 }
 
 body {
@@ -41,6 +54,10 @@ body {
     background-repeat: no-repeat;
     padding: 8rem 0;
     min-height: 100vh;
+
+    @media only screen and (max-width: $bp-largest) {
+        padding: 0;
+    }
 }
 
 img {
